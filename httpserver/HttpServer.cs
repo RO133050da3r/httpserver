@@ -10,8 +10,14 @@ namespace httpserver
 {
     public class HttpServer
     {
+        /// <summary>
+        /// Porten der opretter forbindelse
+        /// </summary>
         public static readonly int DefaultPort = 8888;
 
+        /// <summary>
+        /// Run metode der starter streamen mellem browser og konsol
+        /// </summary>
         public void Run()
         {
             TcpListener serverSocket = new TcpListener(65080);
@@ -28,9 +34,17 @@ namespace httpserver
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true; // enable automatic flushing
 
+            // det er her at vi får svar.
+            Console.WriteLine(sr.ReadLine());
+
             ns.Close();
             connectionSocket.Close();
             serverSocket.Stop();
+        }
+
+        public void Read()
+        {
+            
         }
     }
 }
