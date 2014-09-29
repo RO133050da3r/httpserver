@@ -8,6 +8,7 @@ namespace httpserver
 {
     class Program
     {
+        private const string CRLF = "\r\n"; 
         static void Main(string[] args)
         {
             Console.WriteLine("Hello http server");
