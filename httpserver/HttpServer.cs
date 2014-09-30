@@ -20,7 +20,7 @@ namespace httpserver
         /// </summary>
         public void Run()
         {
-            TcpListener serverSocket = new TcpListener(65080);
+            TcpListener serverSocket = new TcpListener(8888);
             serverSocket.Start();
 
             TcpClient connectionSocket = serverSocket.AcceptTcpClient();
@@ -37,10 +37,15 @@ namespace httpserver
             // det er her at vi får svar.
             Console.WriteLine(sr.ReadLine());
 
+            string answer = "HTTP/1.0 200 OK\r\n\r\nHello World!";
+            sw.WriteLine(answer);
+            Console.WriteLine(answer);
+
             ns.Close();
             connectionSocket.Close();
             serverSocket.Stop();
+
+
         }
-        private static readonly string RootCatalog = "c:/temp";
     }
 }
