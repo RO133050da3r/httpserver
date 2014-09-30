@@ -35,7 +35,14 @@ namespace httpserver
             sw.AutoFlush = true; // enable automatic flushing
 
             // det er her at vi får svar.
-            Console.WriteLine(sr.ReadLine());
+            string s = sr.ReadLine();
+            Console.WriteLine(s);
+
+            string[] words = s.Split(' ');
+            foreach (string word in words)
+            {
+                Console.WriteLine(word);
+            }
 
             string answer = "HTTP/1.0 200 OK\r\n\r\nHello World!";
             sw.WriteLine(answer);
@@ -44,8 +51,6 @@ namespace httpserver
             ns.Close();
             connectionSocket.Close();
             serverSocket.Stop();
-
-
         }
     }
 }
