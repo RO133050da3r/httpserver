@@ -14,7 +14,7 @@ namespace httpserver
         /// Porten der opretter forbindelse
         /// </summary>
         public static readonly int DefaultPort = 8888;
-
+        private static readonly string RootCatalog = @"c:/temp/sometext.html";
         /// <summary>
         /// Run metode der starter streamen mellem browser og konsol
         /// </summary>
@@ -47,6 +47,11 @@ namespace httpserver
             string answer = "HTTP/1.0 200 OK\r\n\r\nHello World!";
             sw.WriteLine(answer);
             Console.WriteLine(answer);
+
+            FileStream fs = File.OpenRead(RootCatalog);
+            fs.CopyTo(sw.BaseStream);
+            sw.BaseStream.Flush();
+            sw.Flush();
 
             ns.Close();
             connectionSocket.Close();
