@@ -41,10 +41,6 @@ namespace httpserver
             connectionSocket.Close();
             serverSocket.Stop();
         }
-
-        public void Read()
-        {
-            
-        }
+        private static readonly string RootCatalog = "c:/temp";
     }
 }
