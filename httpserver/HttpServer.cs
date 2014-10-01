@@ -22,8 +22,10 @@ namespace httpserver
         {
             TcpListener serverSocket = new TcpListener(8888); // lytter på porten 8888
             serverSocket.Start(); // starter server socket
-
-            TcpClient connectionSocket = serverSocket.AcceptTcpClient();
+            TcpClient connectionSocket;
+            while (true)
+            {
+            connectionSocket = serverSocket.AcceptTcpClient();
             //Socket connectionSocket = serverSocket.AcceptSocket();
             Console.WriteLine("Server activated");
 
@@ -52,10 +54,12 @@ namespace httpserver
             fs.CopyTo(sw.BaseStream); // tager file streamen og kopiere til basestream
             sw.BaseStream.Flush(); // flusher basestream
             sw.Flush(); // flusher streamwriter
-
             ns.Close(); // lukker streamen
+            
+            }
             connectionSocket.Close(); // lukker tcp client
             serverSocket.Stop(); // lukker tcp listener
         }
+
     }
 }
