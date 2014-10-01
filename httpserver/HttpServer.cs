@@ -32,13 +32,24 @@ namespace httpserver
             Stream ns = connectionSocket.GetStream();
             // Stream ns = new NetworkStream(connectionSocket);
 
+                HandleRequest(ns);
+                
+            }
+            connectionSocket.Close(); // lukker tcp client
+            serverSocket.Stop(); // lukker tcp listener
+        }
+
+        public void HandleRequest(Stream ns)
+        {
             StreamReader sr = new StreamReader(ns); // læser streams
             StreamWriter sw = new StreamWriter(ns); // skriver stream
             sw.AutoFlush = true; // enable automatic flushing
 
             // det er her at vi får svar.
             string s = sr.ReadLine(); // læser streamen
-            Console.WriteLine(s); // printer streamen normalt ud
+            if (s != null)
+            {
+               Console.WriteLine(s); // printer streamen normalt ud
 
             string[] words = s.Split(' '); // putter streamen i et array med mellemrum
             foreach (string word in words) // for hvert ord i collectionen
@@ -53,12 +64,11 @@ namespace httpserver
             FileStream fs = File.OpenRead(RootCatalog); // tager filen og åbner den i dette tilfælde rootcatalog
             fs.CopyTo(sw.BaseStream); // tager file streamen og kopiere til basestream
             sw.BaseStream.Flush(); // flusher basestream
-            sw.Flush(); // flusher streamwriter
-            ns.Close(); // lukker streamen
-            
+            sw.Flush(); // flusher streamwriter 
             }
-            connectionSocket.Close(); // lukker tcp client
-            serverSocket.Stop(); // lukker tcp listener
+            
+
+            ns.Close(); // lukker streamen
         }
 
     }
