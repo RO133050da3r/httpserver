@@ -10,6 +10,9 @@ namespace httpserver
 {
     public class HttpServer
     {
+
+    
+        
         /// <summary>
         /// Porten der opretter forbindelse
         /// </summary>
@@ -28,7 +31,7 @@ namespace httpserver
             Console.WriteLine("Server activated");
 
             Stream ns = connectionSocket.GetStream();
-            // Stream ns = new NetworkStream(connectionSocket);
+            //Stream ns = new NetworkStream(connectionSocket);
 
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
@@ -41,11 +44,18 @@ namespace httpserver
             sw.WriteLine(answer);
             Console.WriteLine(answer);
 
+            
+
             ns.Close();
             connectionSocket.Close();
             serverSocket.Stop();
 
 
         }
+
+        
+
     }
+
+ 
 }
