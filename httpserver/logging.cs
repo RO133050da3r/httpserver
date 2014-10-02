@@ -8,5 +8,6 @@ namespace httpserver
 {
     class logging
     {
+
     }
 }
