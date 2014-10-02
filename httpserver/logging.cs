@@ -11,10 +11,10 @@ namespace httpserver
 {
     class Logging
     {
-        const string Source = "Vores http server";
-        const string sLog = "Application";
+        const string Source = "Vores http server"; // navn på log
+        const string sLog = "Application"; // type
         
-        public static void WriteInfo(string message)
+        public static void WriteInfo(string message) // laver tjeck på om loggen eksistere
         {
             if (!EventLog.SourceExists(Source))
             {
@@ -25,7 +25,7 @@ namespace httpserver
             using (EventLog log = new EventLog(sLog, machineName, Source))
             {
                
-                log.WriteEntry(message, EventLogEntryType.Information);
+                log.WriteEntry(message, EventLogEntryType.Information); // skriver til loggen
                 
             }
         }

@@ -14,12 +14,12 @@ namespace httpserver
         private static void Main(string[] args)
         {
             Console.WriteLine("Hello http server");
-            Logging.WriteInfo("Server started");
+            Logging.WriteInfo("Server started"); // skriver at serveren er startet til event log
 
-            HttpServer HS = new HttpServer();
-            HS.Run();
+            HttpServer HS = new HttpServer(); // laver et nyt objekt af server class
+            HS.Run(); // kør funktion til server
 
-            Console.ReadKey();
+            Console.ReadKey(); // gør at man kan læse konsollen
         }
 
     }
